@@ -57,5 +57,48 @@ namespace RecordIOGeneratorTests
             imageLabel.XMin = 4;
             imageLabel.YMin = 4;
         }
+
+        [TestMethod]
+        public void ImageAnnotationLableSerialization()
+        {
+            string result = "11.0000\t0.2480\t0.0027\t0.9220\t0.8080\t";
+
+            var imageLabel = new ImageAnnotationLabel();
+            imageLabel.ClassIndex = 11;
+            imageLabel.XMin = 0.248F;
+            imageLabel.YMin = 0.0027F;
+            imageLabel.XMax = 0.9220F;
+            imageLabel.YMax = 0.8080F;
+
+            var ImageAnnotationLabelSerialized = imageLabel.ToString();
+
+            Assert.AreEqual(result,ImageAnnotationLabelSerialized);
+
+        }
+
+        [TestMethod]
+        public void ImageAnnotationListSerialization()
+        {
+            string result = "44\t2\t5\t11.0000\t0.2480\t0.0027\t0.9220\t0.8080\t2010_000152.jpg";
+
+            var imageLabel = new ImageAnnotationLabel();
+            imageLabel.ClassIndex = 11;
+            imageLabel.XMin = 0.248F;
+            imageLabel.YMin = 0.0027F;
+            imageLabel.XMax = 0.9220F;
+            imageLabel.YMax = 0.8080F;
+
+            var imageAnnotation = new ImageAnnotaion("2010_000152.jpg");
+            imageAnnotation.ImageIndex = 44;
+
+            imageAnnotation.ImageLabels = new System.Collections.Generic.List<ImageAnnotationLabel>();
+            imageAnnotation.ImageLabels.Add(imageLabel);
+
+            string ImageAnnotationSerialized = imageAnnotation.ToString();
+
+            Assert.AreEqual(result, ImageAnnotationSerialized);
+
+        }
+
     }
 }
