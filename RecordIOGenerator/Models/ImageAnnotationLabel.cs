@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace RecordIOGenerator.Models
 {
@@ -96,6 +97,30 @@ namespace RecordIOGenerator.Models
                     throw new ArgumentOutOfRangeException("YMax", "Ration should be more than 0 and less then 1");
                 }
             }
+        }
+
+        /// <summary>
+        /// The annotation information for each object is represented as [class_index, xmin, ymin, xmax, ymax]
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            stringBuilder.Append(this.ClassIndex);
+            stringBuilder.Append(".0000");//index needs to be fload??
+            stringBuilder.Append("\t");
+            stringBuilder.Append(this.XMin.ToString("0.0000"));
+            stringBuilder.Append("\t");
+            stringBuilder.Append(this.YMin.ToString("0.0000"));
+            stringBuilder.Append("\t");
+            stringBuilder.Append(this.XMax.ToString("0.0000"));
+            stringBuilder.Append("\t");
+            stringBuilder.Append(this.YMax.ToString("0.0000"));
+            stringBuilder.Append("\t");
+
+
+            return stringBuilder.ToString();
         }
 
     }

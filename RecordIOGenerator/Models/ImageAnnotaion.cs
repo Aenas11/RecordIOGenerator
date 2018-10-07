@@ -1,12 +1,11 @@
-﻿using RecordIOGenerator.Models;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Text;
 
 namespace RecordIOGenerator.Models
 {
     public class ImageAnnotaion
     {
-    
+
         private string imagePath;
         /// <summary>
         /// Relative path of the image file
@@ -50,7 +49,7 @@ namespace RecordIOGenerator.Models
         public IList<ImageAnnotationLabel> ImageLabels { get; set; }
 
 
-        public ImageAnnotaion(string path,int headerSize = 2, int labelWidth = 5)
+        public ImageAnnotaion(string path, int headerSize = 2, int labelWidth = 5)
         {
 
             this.imagePath = path;
@@ -58,5 +57,25 @@ namespace RecordIOGenerator.Models
             this.labelWidht = labelWidth;
         }
 
+        public override string ToString()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            stringBuilder.Append(this.ImageIndex);
+            stringBuilder.Append("\t");
+            stringBuilder.Append(this.HeaderSize);
+            stringBuilder.Append("\t");
+            stringBuilder.Append(this.LabelWidth);
+            stringBuilder.Append("\t");
+
+            foreach (var label in this.ImageLabels)
+            {
+                stringBuilder.Append(label);
+            }
+
+            stringBuilder.Append(this.Path);
+
+            return stringBuilder.ToString();
+        }
     }
 }
